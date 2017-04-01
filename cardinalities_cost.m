@@ -2,8 +2,8 @@ clear all;
 clc;
 close all;
 
-load('cardinality-data/cardinalities.mat');
-load('cardinality-data/timediffs.mat');
+load('cardinality_data/cardinalities.mat');
+load('cardinality_data/timediffs.mat');
 
 data_size = size(cardinalities);
 
