@@ -31,7 +31,7 @@ size(results_PSNR)
 results_img = cell(1, image_count);
 
 for patch_size = 4:4:16
-    for sigma = 10:10:200
+    for sigma = 5:5:80
         param.noiseSig = sigma;
         param.nAtoms = 100;
         param.patchSize = [patch_size patch_size];
