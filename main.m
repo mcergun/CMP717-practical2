@@ -22,7 +22,7 @@ param.nAtoms = 100;
 
 % parameter is changed to 8 because it is a sweet spot for 
 % calculation time / performance gain
-param.nIterations = 1;
+param.nIterations = 8;
 param.useLessAtoms = [0.1 0.1 0.2 0.2 0.4 0.4 0.7 0.7 1 1 1 1 1 1 1];
 
 param.initType = 'RandomPatches'; 
@@ -42,3 +42,9 @@ for i=1:image_count
     results_img(i) = {local_imgs};
     results_PSNR(i, :) = local_PSNRs.';
 end
+
+folder_path = sprintf('results/sigma%datoms%dsize%d/', param.noiseSig, ...
+    param.nAtoms, param.patchSize(1));
+
+save(strcat(folder_path, 'img.mat'), 'results_img');
+save(strcat(folder_path, 'PSNR.mat'), 'results_PSNR');
