@@ -40,7 +40,7 @@ for i=1:image_count
     img = imread(filenames{i});
     [local_PSNRs, local_imgs] = Image_Denoising_Test_Custom(img, param);
     results_img(i) = {local_imgs};
-    results_PSNR(i, :) = local_PSNRs.';
+    results_PSNR(i, :) = local_PSNRs;
 end
 
 folder_path = sprintf('results/sigma%datoms%dsize%d/', param.noiseSig, ...
