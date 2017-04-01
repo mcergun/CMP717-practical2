@@ -3,8 +3,8 @@ close all;
 
 % Denoising
 
-filenames = {'barbara.png'; 'foreman.tif'; 'peppers256.png'};
-image_count = size(filenames);
+filenames = {'barbara.png' 'foreman.tif' 'peppers256.png'};
+image_count = max(size(filenames));
 
 %% Parameters are set here
 % various parameters
@@ -22,7 +22,7 @@ param.nAtoms = 100;
 
 % parameter is changed to 8 because it is a sweet spot for 
 % calculation time / performance gain
-param.nIterations = 8;
+param.nIterations = 1;
 param.useLessAtoms = [0.1 0.1 0.2 0.2 0.4 0.4 0.7 0.7 1 1 1 1 1 1 1];
 
 param.initType = 'RandomPatches'; 
@@ -32,11 +32,13 @@ param.initType = 'DCT';
 param.groundTruthData.patchSize = param.patchSize;
 
 %% Test is run here
-results_PSNR = zeros([image_count 4]);
-results_img = cell([image_count 1]);
+results_PSNR = zeros(image_count, 4);
+size(results_PSNR)
+results_img = cell(1, image_count);
 for i=1:image_count
+    close all;
     img = imread(filenames{i});
     [local_PSNRs, local_imgs] = Image_Denoising_Test_Custom(img, param);
     results_img(i) = {local_imgs};
-    results_PSNR(i, :) = local_PSNRs;
+    results_PSNR(i, :) = local_PSNRs.';
 end
