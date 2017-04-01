@@ -44,13 +44,13 @@ for patch_size = 4:4:16
             results_img(i) = {local_imgs};
             results_PSNR(i, :) = local_PSNRs;
         end
+        
+        folder_path = sprintf('results/sigma%datoms%dsize%d/', param.noiseSig, ...
+            param.nAtoms, param.patchSize(1));
+
+        mkdir(folder_path);
+
+        save(strcat(folder_path, 'img.mat'), 'results_img');
+        save(strcat(folder_path, 'PSNR.mat'), 'results_PSNR');
     end
 end
-
-folder_path = sprintf('results/sigma%datoms%dsize%d/', param.noiseSig, ...
-    param.nAtoms, param.patchSize(1));
-
-mkdir(folder_path);
-
-save(strcat(folder_path, 'img.mat'), 'results_img');
-save(strcat(folder_path, 'PSNR.mat'), 'results_PSNR');
