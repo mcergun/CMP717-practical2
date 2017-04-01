@@ -18,7 +18,7 @@ param.method = 'KSVD';
 
 % parameter is changed to 8 because it is a sweet spot for 
 % calculation time / performance gain
-param.nIterations = 15;
+param.nIterations = 8;
 param.useLessAtoms = [0.1 0.1 0.2 0.2 0.4 0.4 0.7 0.7 1 1 1 1 1 1 1];
 
 param.initType = 'RandomPatches'; 
