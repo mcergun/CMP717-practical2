@@ -12,7 +12,7 @@ param.patchSize = [8 8];
 
 % OMP param
 param.errorGoal = 1.15;
-param.noiseSig = 50;
+param.noiseSig = 100;
 
 % Dictionary training param
 param.method = 'KSVD';
@@ -45,6 +45,8 @@ end
 
 folder_path = sprintf('results/sigma%datoms%dsize%d/', param.noiseSig, ...
     param.nAtoms, param.patchSize(1));
+
+mkdir(folder_path);
 
 save(strcat(folder_path, 'img.mat'), 'results_img');
 save(strcat(folder_path, 'PSNR.mat'), 'results_PSNR');
