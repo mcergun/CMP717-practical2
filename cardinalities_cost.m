@@ -2,15 +2,15 @@ clear all;
 clc;
 close all;
 
-load('cardinalities.mat');
-load('timediffs.mat');
+load('cardinality-data/cardinalities.mat');
+load('cardinality-data/timediffs.mat');
 
 data_size = size(cardinalities);
 
 card_diff = zeros(data_size);
 total_timediffs = zeros(data_size);
 
-card_diff(1:data_size - 1) = diff(cardinalities);
+card_diff(1:data_size - 1) = abs(diff(cardinalities));
 
 for i = 1:data_size
     total_timediffs(i) = sum(timediffs(1:i));
