@@ -33,7 +33,7 @@ results_img = cell(1, image_count);
 for patch_size = 4:4:16
     for sigma = 10:10:200
         param.noiseSig = sigma;
-        param.nAtoms = 200;
+        param.nAtoms = 100;
         param.patchSize = [patch_size patch_size];
         param.groundTruthData.patchSize = param.patchSize;
         
