@@ -32,8 +32,11 @@ param.initType = 'DCT';
 param.groundTruthData.patchSize = param.patchSize;
 
 %% Test is run here
-    
+results_PSNR = zeros([image_count 4]);
+results_img = cell([image_count 1]);
 for i=1:image_count
     img = imread(filenames{i});
-    [results_PSNR, results_img] = Image_Denoising_Test_Custom(img, param);
+    [local_PSNRs, local_imgs] = Image_Denoising_Test_Custom(img, param);
+    results_img(i) = {local_imgs};
+    results_PSNR(i, :) = local_PSNRs;
 end
