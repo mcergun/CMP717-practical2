@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>CS 143 Project</title>
+<title>CMP717 Practical 2</title>
 <link href='http://fonts.googleapis.com/css?family=Nunito:300|Crimson+Text|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" title="Default" href="styles/github.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>  
@@ -136,37 +136,82 @@ table td img {
 <body>
 <div id="header" >
 <div id="headersub">
-<h1>Your Name <span style="color: #DE3737">(your cs id)</span></h1>
+<h1>Mert Can Ergun <span style="color: #DE3737">(N16127532)</span></h1>
 </div>
 </div>
 <div class="container">
 
-<h2>CS 143 / Project 5 / Boundary Detection with Sketch Tokens</h2>
+<h2>CMP 717 – Practical 2: Patch-based image denoising using learned dictionaries</h2>
 
-<div style="float: right; padding: 20px">
+<!-- <div style="float: right; padding: 20px">
 <img src="placeholder.jpg" />
 <p style="font-size: 14px">Example of a right floating element.</p>
-</div>
+</div> -->
 
-<p> 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h3> Computation Time Trade-Off</h3>
+<p> Since I have a relatively older CPU(AMD FX6100), the code didn't run well for extensive testing. I had to set a reasonable iteration count in order to do the computations faster, but not lose much performance. I started by profiling iteration count vs cardinality on barbara.png with default values(100 atoms, patch size of 8).</p>
+<p> I have set iteration count to 25 and modified Train_Dictionary function to report time spent. Then I have collected those data and parsed it with cardinality_cost.m. Using those data, I have decided to use 8 iterations for my tests. The output graphs from my parser can be seen below:</p>
+
+<table border=1>
+<tr>
+<td>
+<a href="../cardinality_cost_outputs/card-diff-timediff.png"><img src="../cardinality_cost_outputs/card-diff-timediff.png" width="20%"/></a>
+<a href="../cardinality_cost_outputs/card-diff-totaltime.png"><img src="../cardinality_cost_outputs/card-diff-totaltime.png" width="20%"/></a>
+<a href="../cardinality_cost_outputs/cardinality_cost_outputscard-timediff.png"><img src="../cardinality_cost_outputs/cardinality_cost_outputscard-timediff.png" width="20%"/></a>
+<a href="../cardinality_cost_outputs/card-totaltime.png"><img src="../cardinality_cost_outputs/card-totaltime.png" width="20%"/></a>
+</td>
+</tr>
+</table>
+</br>
+<h3> Problem  1.1</h3>
+<p> In this part, I have coded a small script(main_p11.m) to run some combinations of different parameters. The parameters that I have changed are patch size, noise sigma, number of atoms. I have saved image results and PSNR values in .mat files, so I can analyze them later.</p>
+<p> Using another script(results/process_results.m) I have plotted PSNR improvement of K-SVD method versus various sigma values.</p>
+<p> I have set iteration count to 25 and modified Train_Dictionary function to report time spent. Then I have collected those data and parsed it with cardinality_cost.m. Using those data, I have decided to use 8 iterations for my tests. The output graphs from my parser can be seen below:</p>
+
+<table border=1>
+<tr>
+<td>64 atoms, 4x4 patches vs 8x8 patches</td>
+<td>81 atoms, 4x4 patches vs 8x8 patches</td>
+</tr>
+<tr>
+<td>
+<a href="../results/output_plots/sigmaXatoms64size4.png"><img src="../results/output_plots/sigmaXatoms64size4.png" width="40%"/></a>
+<a href="../results/output_plots/sigmaXatoms64size8.png"><img src="../results/output_plots/sigmaXatoms64size8.png" width="40%"/></a>
+</td>
+<td>
+<a href="../results/output_plots/sigmaXatoms81size4.png"><img src="../results/output_plots/sigmaXatoms81size4.png" width="40%"/></a>
+<a href="../results/output_plots/sigmaXatoms81size8.png"><img src="../results/output_plots/sigmaXatoms81size8.png" width="40%"/></a>
+</td>
+</tr>
+<tr>
+<td>121 atoms, 4x4 patches vs 8x8 patches</td>
+<td>144 atoms, 4x4 patches vs 8x8 patches</td>
+</tr>
+<tr>
+<td>
+<a href="../results/output_plots/sigmaXatoms121size4.png"><img src="../results/output_plots/sigmaXatoms121size4.png" width="40%"/></a>
+<a href="../results/output_plots/sigmaXatoms121size8.png"><img src="../results/output_plots/sigmaXatoms121size8.png" width="40%"/></a>
+</td>
+<td>
+<a href="../results/output_plots/sigmaXatoms144size4.png"><img src="../results/output_plots/sigmaXatoms144size4.png" width="40%"/></a>
+<a href="../results/output_plots/sigmaXatoms144size8.png"><img src="../results/output_plots/sigmaXatoms144size8.png" width="40%"/></a>
+</td>
+</tr>
+</table>
+
+<p> From these results I can say that to get a good result from K-SVD, we need to have: </p>
 
 <ol>
-<li>list element 1.</li>
-<li>list element 2.</li>
-<li>etc.</li>
+<li>high number of atoms</li>
+<li>a large patch size</li>
 </ol>
 
-<p> 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<div style="clear:both">
-<h3>Example heading</h3>
-
-<p> 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p> But choosing a high number of atoms alone doesn't cut it, either. As results show, a large number of atoms with a small patch gives less performance than other methods.</p>
 
 <h2>Example of code with highlighting</h2>
 The javascript in the <code>highlighting</code> folder is configured to do syntax highlighting in code blocks such as the one below.<p>
 
-<pre><code>
+<pre><code class="matlab">
 %example code
 for i = 1:length(offset)
     source = imread(sprintf('%s/source_%02d.jpg',data_dir,i));
