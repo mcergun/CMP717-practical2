@@ -4,10 +4,9 @@ clc
 
 cd('.');
 
-folder_path = 'sigma100atoms100size8';
+folder_path = 'sigma5atoms144size8';
 
-load(strcat(folder_path, '/PSNR.mat'));
-load(strcat(folder_path, '/img.mat'));
+[results_PSNR, results_img] = gather_results(folder_path);
 
 image_count = size(results_PSNR, 1);
 
@@ -20,8 +19,3 @@ for i=1:image_count
         title(sprintf('PSNR %f', results_PSNR(i, j)));
     end
 end
-
-% im1 = uint8(im(:, :, 4));
-% 
-% subimage(im1)
-% subimage(im1)
