@@ -11,7 +11,7 @@ results_img = cell(12, 3);
 
 arr = 5:5:60;
 
-pattern = 'sigma%datoms100size8';
+pattern = 'sigma%datoms144size4';
 pattern_replaced = strrep(pattern, '%d', 'X');
 
 for sigma=arr
@@ -38,11 +38,10 @@ ksvd_psnr(1:3, :) = results_PSNR(:, 1:3, 4)';
 xscale = 5:5:60;
 
 plot(xscale, ksvd_psnr' - dct_w_ovr_psnr');
-hold on
-plot(xscale, zeros(1, 12), ':');
-legend('barbara.png','foreman.tif', 'peppers256.png', 'zero gain line');
+legend('barbara.png','foreman.tif', 'peppers256.png');
 ylabel('K-SVD Gain over DCT with Overlap Method');
 xlabel('Sigma Values');
+grid on
 print('-dpng', fullfile('output_plots', [pattern_replaced '.png']));
 
 % for i=1:data_count
