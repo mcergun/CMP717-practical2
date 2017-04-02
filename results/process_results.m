@@ -11,8 +11,11 @@ results_img = cell(12, 3);
 
 arr = 5:5:60;
 
+pattern = 'sigma%datoms100size8';
+pattern_replaced = strrep(pattern, '%d', 'X');
+
 for sigma=arr
-    folder_path = sprintf('sigma%datoms100size8', sigma);
+    folder_path = sprintf(pattern, sigma);
     fprintf('Reading folder %s\n', folder_path);
     [results_PSNR(sigma/5, :, :), results_img(sigma/5, :)] = ...
         gather_results(folder_path);
@@ -40,7 +43,7 @@ plot(xscale, zeros(1, 12), ':');
 legend('barbara.png','foreman.tif', 'peppers256.png', 'zero gain line');
 ylabel('K-SVD Gain over DCT with Overlap Method');
 xlabel('Sigma Values');
-print('-dpng', fullfile('output_plots', 'filename.png'));
+print('-dpng', fullfile('output_plots', [pattern_replaced '.png']));
 
 % for i=1:data_count
 %     for j=1:image_count
