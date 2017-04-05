@@ -3,7 +3,7 @@ close all;
 
 % Denoising
 
-filenames = {'barbara.png' 'foreman.tif' 'peppers256.png'};
+filenames = {'../barbara.png' '../foreman.tif' '../peppers256.png'};
 image_count = max(size(filenames));
 
 %% Parameters are set here
