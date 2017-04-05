@@ -30,7 +30,7 @@ results_PSNR = zeros(image_count, 4);
 size(results_PSNR)
 results_img = cell(1, image_count);
 
-for patch_size = 10
+for patch_size = 8
     for sigma = 5:5:60
         for atoms = 8:12
             param.noiseSig = sigma;
@@ -46,7 +46,7 @@ for patch_size = 10
                 results_PSNR(i, :) = local_PSNRs;
             end
             
-            folder_path = sprintf('results/sigma%datoms%dsize%d/', param.noiseSig, ...
+            folder_path = sprintf('../results/sigma%datoms%dsize%d/', param.noiseSig, ...
                 param.nAtoms, param.patchSize(1));
             
             mkdir(folder_path);

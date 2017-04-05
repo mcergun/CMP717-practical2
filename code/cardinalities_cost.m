@@ -2,8 +2,8 @@ clear all;
 clc;
 close all;
 
-load('cardinality_data/cardinalities.mat');
-load('cardinality_data/timediffs.mat');
+load('../cardinality_data/cardinalities.mat');
+load('../cardinality_data/timediffs.mat');
 
 data_size = size(cardinalities);
 
@@ -80,5 +80,5 @@ xlabel('Iteration')
 ylabel(p4(1),'Cardinality Difference') % left y-axis 
 ylabel(p4(2),'Total Time Spent') % right y-axis
 
-print('cardinality_cost_outputs/total-graph','-dpng');
+print('../cardinality_cost_outputs/total-graph','-dpng');
 
