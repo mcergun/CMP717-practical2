@@ -20,7 +20,7 @@ noisyIm = Add_Noise_To_Image(trueIm , noiseSig, 1);
 noisyPSNR = Compute_Error_Stats(trueIm , noisyIm);
 results_img(:, :, 1) = noisyIm;
 results_PSNR(1) = noisyPSNR;
-% figure; imshow(noisyIm , []); title(sprintf('noisy image  : %02.2f dB' ,noisyPSNR) );
+figure; imshow(noisyIm , []); title(sprintf('noisy image  : %02.2f dB' ,noisyPSNR) );
 
 %======================================================
 
@@ -31,7 +31,7 @@ ResIm_NoOverlap = Image_Denoising_Patches(noisyIm , DCTdict , param);
 resDCTPSNR = Compute_Error_Stats(trueIm , ResIm_NoOverlap);
 results_img(:, :, 2) = ResIm_NoOverlap;
 results_PSNR(2) = resDCTPSNR;
-% figure; imshow(ResIm_NoOverlap , []);   title(sprintf('DCT, no overlap : %02.2f dB' ,resDCTPSNR) );
+figure; imshow(ResIm_NoOverlap , []);   title(sprintf('DCT, no overlap : %02.2f dB' ,resDCTPSNR) );
 disp(['     PSNR = ',num2str(resDCTPSNR)]);
 disp('   ');
 
@@ -42,7 +42,7 @@ ResIm_WithOverlap = Image_Denoising_Patches_Overlap(noisyIm , DCTdict , param);
 resDCToverlapPSNR = Compute_Error_Stats(trueIm , ResIm_WithOverlap);
 results_img(:, :, 3) = ResIm_WithOverlap;
 results_PSNR(3) = resDCToverlapPSNR;
-% figure; imshow(ResIm_WithOverlap , []);   title(sprintf('DCT, with overlap : %02.2f dB' ,resDCToverlapPSNR) );
+figure; imshow(ResIm_WithOverlap , []);   title(sprintf('DCT, with overlap : %02.2f dB' ,resDCToverlapPSNR) );
 disp(['     PSNR = ',num2str(resDCToverlapPSNR)]);
 disp('   ');
 
@@ -52,7 +52,7 @@ ResIm_Trained = Image_Denoising_Trained_Dictionary(noisyIm , param);
 resTrainedPSNR = Compute_Error_Stats(trueIm , ResIm_Trained);
 results_img(:, :, 4) = ResIm_Trained;
 results_PSNR(4) = resTrainedPSNR;
-% figure; imshow(ResIm_Trained , []);   title(sprintf('With trained dictionary : %02.2f dB' ,resTrainedPSNR) );
+figure; imshow(ResIm_Trained , []);   title(sprintf('With trained dictionary : %02.2f dB' ,resTrainedPSNR) );
 disp(['     PSNR = ',num2str(resTrainedPSNR)]);
 disp('   ');
 
