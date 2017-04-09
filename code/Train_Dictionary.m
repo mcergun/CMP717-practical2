@@ -56,6 +56,10 @@ function [resDict , allDicts] = Train_Dictionary(trainPatches, param)
 % Reset random number generator
 randn('state',0);
 
+if param.externalTrain == 1
+    trainPatches = generate_external_patches(param.externalTrainPath, param.patchSize);
+end
+
 % Get parameters
 dim = size(trainPatches , 1);
 nAtoms = param.nAtoms;
