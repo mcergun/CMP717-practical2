@@ -53,16 +53,17 @@ function [resDict , allDicts] = Train_Dictionary(trainPatches, param)
 % AllDicts      : A cell array with the dictionaries for each iteration
 %                 (first entry is initial, second entry is after first iteration, etc.)
 
-if exist('../data/dictionary.mat', 'file') == 2
-    disp('Dictionary data already exists, skipping this step');
-    load('../data/dictionary.mat', 'resDict');
-    return;
-end
+
 % Reset random number generator
 randn('state',0);
 
 if param.externalTrain == 1
     trainPatches = generate_external_patches(param.externalTrainPath, param.patchSize);
+    if exist('../data/dictionary.mat', 'file') == 2
+        disp('Dictionary data already exists, skipping this step');
+        load('../data/dictionary.mat', 'resDict');
+        return;
+    end
 end
 
 % Get parameters
