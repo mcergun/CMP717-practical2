@@ -141,7 +141,7 @@ table td img {
 </div>
 <div class="container">
 
-<h2>CMP 717 – Practical 2: Patch-based image denoising using learned dictionaries</h2>
+<h2>CMP 717 - Practical 2: Patch-based image denoising using learned dictionaries</h2>
 
 <!-- <div style="float: right; padding: 20px">
 <img src="placeholder.jpg" />
@@ -207,6 +207,11 @@ table td img {
 </ol>
 
 <p> But choosing a high number of atoms alone doesn't cut it, either. As results show, a large number of atoms with a small patch gives less performance than other methods.</p>
+
+<h3> Problem  1.2</h3>
+<p> For this part, I have introduced 2 new parameters for <b>param</b> variable; <b>param.externalTrain</b> and <b>param.externalTrainPath</b>. The parameters allow us to control training behaviour. If externalTraining is set, then images in externalTrainingPath are read and their patches are used instead of original images.</p>
+<p> I have created an extra function <b>generate_external_patches</b> to generate image patches from the external directory. As computation is a big problem, for my tests I just used 4 images found on the internet.</p>
+<p> I have set iteration count to 25 and modified Train_Dictionary function to report time spent. Then I have collected those data and parsed it with cardinality_cost.m. Using those data, I have decided to use 8 iterations for my tests. The output graphs from my parser can be seen below:</p>
 
 <h2>Example of code with highlighting</h2>
 The javascript in the <code>highlighting</code> folder is configured to do syntax highlighting in code blocks such as the one below.<p>
