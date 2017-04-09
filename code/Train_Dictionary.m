@@ -53,6 +53,11 @@ function [resDict , allDicts] = Train_Dictionary(trainPatches, param)
 % AllDicts      : A cell array with the dictionaries for each iteration
 %                 (first entry is initial, second entry is after first iteration, etc.)
 
+if exist('../data/dictionary.mat', 'file') == 2
+    disp('Dictionary data already exists, skipping this step');
+    load('../data/dictionary.mat', 'resDict');
+    return;
+end
 % Reset random number generator
 randn('state',0);
 
@@ -342,6 +347,8 @@ end
 
 % Return the last dictionary
 resDict = currDict;
+
+save('../data/dictionary.mat', 'resDict');
 
 % Finished
 return;
