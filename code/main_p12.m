@@ -1,5 +1,5 @@
 % Main Program
-close all;
+% close all;
 
 % Denoising
 
