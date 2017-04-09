@@ -1,10 +1,4 @@
 function patches_all = generate_external_patches(folder_path, patchsize)
-    if exist(fullfile(folder_path, 'patches.mat'), 'file') == 2
-        disp('Patch data already exists, skipping this step');
-        load(fullfile(folder_path, 'patches.mat'), 'patches_all');
-        return;
-    end
-
     disp('Generating patches');
     filelist = fullfile(folder_path, 'filelist.txt');
 
