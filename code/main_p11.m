@@ -23,6 +23,7 @@ param.useLessAtoms = [0.1 0.1 0.2 0.2 0.4 0.4 0.7 0.7 1 1 1 1 1 1 1];
 
 param.initType = 'RandomPatches';
 param.initType = 'DCT';
+param.externalTrain = 0;
 %  param.initType = 'Input';
 
 %% Test is run here
@@ -39,7 +40,6 @@ for patch_size = 8
             param.groundTruthData.patchSize = param.patchSize;
             
             for i=1:image_count
-                close all;
                 img = imread(filenames{i});
                 [local_PSNRs, local_imgs] = Image_Denoising_Test_Custom(img, param);
                 results_img(i) = {local_imgs};
