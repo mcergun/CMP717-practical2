@@ -1,1 +1,6 @@
+32.gif
+35.gif
+baboon.png
+boat.png
 fan_eroded.png
+univ.png
